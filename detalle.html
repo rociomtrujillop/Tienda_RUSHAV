@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">  
-  <title>Productos RUSHAV</title>
+  <title>Detalle de producto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <link rel="stylesheet" href="css/styles.css"> 
 </head>
@@ -23,27 +23,23 @@
     </div>
   </header>
 
-  <main>
-    <h1>Todos los productos</h1>
-    <div id="productos-container" class="productos"></div>
-  </main>
+  <main id="detalle"></main>
 
   <script src="js/productos.js"></script>
   <script>
-    const contenedor = document.getElementById("productos-container");
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"));
     const listaProductos = JSON.parse(localStorage.getItem("productos"));
+    const producto = listaProductos.find(p => p.id === id);
 
-    listaProductos.forEach(p => {
-      const div = document.createElement("article");
-      div.classList.add("producto");
-      div.innerHTML = `
-        <img src="${p.imagen}" alt="${p.nombre}">
-        <h4><a href="detalle.html?id=${p.id}">${p.nombre}</a></h4>
-        <p class="precio">$${p.precio}</p>
-        <button onclick="agregarAlCarrito(${p.id})">Añadir al carrito</button>
-      `;
-      contenedor.appendChild(div);
-    });
+    const detalle = document.getElementById("detalle");
+    detalle.innerHTML = `
+      <h1>${producto.nombre}</h1>
+      <img src="${producto.imagen}" alt="${producto.nombre}" style="max-width:300px;">
+      <p>${producto.descripcion}</p>
+      <p class="precio">$${producto.precio}</p>
+      <button onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
+    `;
 
     function agregarAlCarrito(id) {
       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
