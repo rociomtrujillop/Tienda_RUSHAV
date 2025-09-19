@@ -1,0 +1,207 @@
+body {
+  background-color: #f5f5f5;  
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;                 
+}
+
+header {
+  background: #2c2c2c;         
+  color: white;
+  padding: 1rem;
+  border-bottom: 0.125rem solid #b23a48; 
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #b23a48;        
+}
+
+.carrito {
+  margin-left: auto;
+}
+
+main {
+  padding: 2rem;
+}
+
+footer {
+  background: #2c2c2c;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+
+.productos {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.producto {
+  background: white;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0.125rem 0.125rem 0.375rem rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.producto:hover {
+  transform: scale(1.03);
+}
+
+.producto img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.producto h4 {
+  margin: 0.5rem 0;
+  color: #2c2c2c;              
+}
+
+.precio {
+  font-weight: bold;
+  color: #b23a48;             
+  margin: 0.5rem 0;
+}
+
+.producto button {
+  background: #b23a48;        
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.producto button:hover {
+  background: #8e2d39;         
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: row;           /* fila: texto izq, imagen der */
+  align-items: stretch;          /* misma altura */
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.5rem;
+  margin: 2rem auto;
+  background: #fff;
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1);
+  max-width: 56.25rem;
+  overflow: hidden;
+}
+
+.blog-card img {
+  width: 50%;                    /* ocupa la mitad */
+  object-fit: cover;             /* recorta sin deformar */
+}
+
+.contenido-blog {
+  width: 50%;                    /* la otra mitad */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* botón al fondo */
+}
+
+.contenido-blog h2 {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+  color: #2c2c2c;
+}
+
+.contenido-blog p {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.contenido-blog a {
+  align-self: flex-start;        
+  padding: 0.6rem 1.2rem;
+  background: #b23a48;         
+  color: white;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.contenido-blog a:hover {
+  background: #8e2d39;
+}
+
+.form-container {
+  max-width: 24.5rem;           
+  margin: 3rem auto;           
+  background: white;           
+  padding: 2rem;               
+  box-shadow: 0 0.35rem 0.635rem rgba(0,0,0,0.1); 
+  text-align: left;          
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c2c2c;             
+}
+
+form {
+  display: flex;
+  flex-direction: column;      /* inputs uno debajo del otro */
+  gap: 1rem;                   /* espacio entre ellos */
+}
+
+form label {
+  font-weight: bold;
+  color: #333;
+}
+
+form input, form select, form textarea {
+  padding: 0.2rem;
+  font-size: 1rem;
+}
+
+form button {
+  background: #b23a48;      
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #8e2d39;
+}

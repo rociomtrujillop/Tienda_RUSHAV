@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">  
+  <title>Registro RUSHAV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="css/styles.css"> 
+</head>
+<body>
+  <header>
+  <div class="header-container"> 
+    <h1 class="logo">RUSHAV</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="carrito.html" class="carrito">Carrito</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="login.html">Login</a>
+      <a href="registro.html">Registro</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="form-container">
+    <h1>Registro</h1>
+    <form id="registro-form">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" required>
+      
+      <label for="correo">Correo</label>
+      <input type="email" id="correo" required>
+      
+      <label for="correo2">Repetir correo</label>
+      <input type="email" id="correo2" required>
+  
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" required>
+      
+      <label for="password2">Repetir contraseña</label>
+      <input type="password" id="password2" required>
+  
+      <label for="telefono">Teléfono (Opcional)</label>
+      <input type="tel" id="telefono">
+  
+      <button type="submit">Registrarse</button>
+    </form>
+    <p id="error" style="color:red;"></p>
+  </section>
+</main>
+
+<script>
+  document.getElementById("registro-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const correo = document.getElementById("correo").value;
+    const correo2 = document.getElementById("correo2").value;
+    const password = document.getElementById("password").value;
+    const password2 = document.getElementById("password2").value;
+    const telefono = document.getElementById("telefono").value;
+    const error = document.getElementById("error");
+
+    if (nombre.trim() === "") {
+      error.textContent = "El nombre es obligatorio";
+    } else if (!correo.endsWith("@duoc.cl") && !correo.endsWith("@profesor.duoc.cl") && !correo.endsWith("@gmail.com")) {
+      error.textContent = "Correo no válido";
+    } else if (correo !== correo2) {
+      error.textContent = "Los correos no coinciden";
+    } else if (password.length < 4 || password.length > 10) {
+      error.textContent = "La contraseña debe tener entre 4 y 10 caracteres";
+    } else if (password !== password2) {
+      error.textContent = "Las contraseñas no coinciden";
+    } else {
+      error.textContent = "";
+      alert("Registro exitoso");
+    }
+  });
+</script>
+
+<footer>
+    <p>© 2025 io rocio jeje</p>
+</footer>

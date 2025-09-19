@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">   <!-- para q se vean las ñs, tildes y todo eso -->
+  <title>RUSHAV</title> <!-- se le cambia el nombre a la pagina dependiendo dnde estemos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- para q se autoajuste a la pantalla (q sea responsive) -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- conecta a los estilos en la otra carpeta -->
+</head>
+<body>
+  <header>
+  <div class="header-container"> <!-- .header-container es un contenedor para organizar las cosas con flexbox -->
+    <h1 class="logo">RUSHAV</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="carrito.html" class="carrito">Carrito</a> <!-- se lo define como clase a carrito para en los css diferenciar el estilo -->
+      <a href="contacto.html">Contacto</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="login.html">Login</a>
+      <a href="registro.html">Registro</a>
+    </nav>
+  </div>
+</header> <!-- todo lo que esta desde la primera linea hasta acá va en (hasta ahora) todas las paginas pq es el header y las configuraciones -->
+<main>
+  <section>
+    <h2>Productos destacados</h2>
+    <div class="productos">
+      <article class="producto">
+        <img src="img/hamster1.webp" alt="Chaqueta negra">
+        <h4>Ejemplo</h4>
+        <p class="precio">$39.990</p>
+        <button>Agregar al carrito</button>
+      </article>
+      <article class="producto">
+        <img src="img/hamster2.jpg" alt="Pantalón cargo">
+        <h4>Ejemplo</h4>
+        <p class="precio">$29.990</p>
+        <button>Agregar al carrito</button>
+      </article>
+    </div>
+  </section>
+</main>
+<footer> <!-- al iwal q lo de arriba todo lo q esta dentro de footer tiene q estar siempre -->
+    <p>© 2025 io rocio jeje</p>
+</footer>
+</body>
+</html>

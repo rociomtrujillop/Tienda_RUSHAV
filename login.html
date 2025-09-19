@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">  
+  <title>Login RUSHAV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="css/styles.css"> 
+</head>
+<body>
+  <header>
+  <div class="header-container"> 
+    <h1 class="logo">RUSHAV</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="carrito.html" class="carrito">Carrito</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="login.html">Login</a>
+      <a href="registro.html">Registro</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="form-container">
+    <h1>Iniciar sesión</h1>
+    <form id="login-form">
+      <label>Correo</label>
+      <input type="email" id="correo" required>
+      <label>Contraseña</label>
+      <input type="password" id="password" required>
+      <button type="submit">Ingresar</button>
+    </form>
+    <p id="error" style="color:red;"></p>
+  </section>
+</main>
+
+<script>
+  document.getElementById("login-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const correo = document.getElementById("correo").value;
+    const password = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if (!correo.endsWith("@duoc.cl") && !correo.endsWith("@profesor.duoc.cl") && !correo.endsWith("@gmail.com")) {
+      error.textContent = "Correo no válido";
+    } else if (password.length < 4 || password.length > 10) {
+      error.textContent = "Contraseña debe tener entre 4 y 10 caracteres";
+    } else {
+      error.textContent = "";
+      alert("Inicio de sesión exitoso");
+    }
+  });
+</script>
+<footer>
+    <p>© 2025 io rocio jeje</p>
+</footer>
