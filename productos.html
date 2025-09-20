@@ -27,33 +27,30 @@
     <h1>Todos los productos</h1>
     <div id="productos-container" class="productos"></div>
   </main>
-
   <script src="js/productos.js"></script>
   <script>
-    const contenedor = document.getElementById("productos-container");
-    const listaProductos = JSON.parse(localStorage.getItem("productos"));
-
-    listaProductos.forEach(p => {
-      const div = document.createElement("article");
+    const contenedor = document.getElementById("productos-container"); // busca el div con id productos-container (donde se mostrarán los productos)
+    const listaProductos = JSON.parse(localStorage.getItem("productos")); // carga desde localstorage el arreglo d productos creado en productos.js
+    listaProductos.forEach(p => { // recorre el arreglo d productos
+      const div = document.createElement("article"); // crea un elemento article por cada producto segun lo q pusimos en productos.js
       div.classList.add("producto");
       div.innerHTML = `
         <img src="${p.imagen}" alt="${p.nombre}">
-        <h4><a href="detalle.html?id=${p.id}">${p.nombre}</a></h4>
+        <h4><a href="detalle.html?id=${p.id}">${p.nombre}</a></h4> <!-- el nombre es un enlace que lleva a detalle.html(id del producto). -->
         <p class="precio">$${p.precio}</p>
-        <button onclick="agregarAlCarrito(${p.id})">Añadir al carrito</button>
+        <button onclick="agregarAlCarrito(${p.id})">Añadir al carrito</button> <!-- el boton llama a la funcion agregarAlCarrito con el id del producto -->
       `;
       contenedor.appendChild(div);
     });
 
     function agregarAlCarrito(id) {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      const producto = listaProductos.find(p => p.id === id);
-      carrito.push(producto);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || []; // carga el carrito desde localstorage o si no existe crea un arreglo vacio
+      const producto = listaProductos.find(p => p.id === id);  // busca el producto en la lista de productos por su id
+      carrito.push(producto); // añade el producto al carrito
+      localStorage.setItem("carrito", JSON.stringify(carrito)); // guarda el carrito actualizado en localstorage
       alert("Producto añadido al carrito");
     }
   </script>
-
   <footer>
     <p>© 2025 io rocio jeje</p>
   </footer>

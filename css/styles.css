@@ -1,3 +1,4 @@
+/* GENERAL */
 body {
   background-color: #f5f5f5;  
   font-family: sans-serif;
@@ -56,6 +57,8 @@ footer {
   color: white;
 }
 
+
+/* PRODUCTOS */
 .productos {
   display: flex;
   gap: 1.25rem;
@@ -110,6 +113,7 @@ footer {
   background: #8e2d39;         
 }
 
+/* BLOG */
 .blog-card {
   display: flex;
   flex-direction: row;           /* fila: texto izq, imagen der */
@@ -161,6 +165,7 @@ footer {
   background: #8e2d39;
 }
 
+/* FORMULARIOS */
 .form-container {
   max-width: 24.5rem;           
   margin: 3rem auto;           
@@ -204,4 +209,205 @@ form button {
 
 form button:hover {
   background: #8e2d39;
+}
+
+/* DETALLE PRODUCTO */
+.detalle-container {
+  display: flex;
+  align-items: flex-start;   /* alinea arriba */
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 56.25rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.35rem 0.635rem rgba(0,0,0,0.1);
+}
+
+/* imagen principal con miniaturas debajo */
+.detalle-imagen {
+  flex: 1; /* ocupa mitad izquierda */
+  display: flex;
+  flex-direction: column; /* principal arriba, miniaturas abajo */
+  align-items: center;
+}
+
+.detalle-imagen img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.miniaturas {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.miniaturas img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 0.25rem;
+  transition: border 0.2s;
+}
+
+.miniaturas img:hover {
+  border: 2px solid #b23a48;
+}
+
+.detalle-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detalle-info h1 {
+  margin: 0;
+  color: #2c2c2c;
+}
+
+.detalle-info .precio {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #b23a48;
+}
+
+.detalle-info input[type="number"] {
+  width: 70px;
+  padding: 0.3rem;
+}
+
+.detalle-info button {
+  background: #b23a48;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.detalle-info button:hover {
+  background: #8e2d39;
+}
+
+/* PRODUCTOS RELACIONADOS */
+.productos-relacionados {
+  display: flex;
+  flex-wrap: wrap;      /* que salten de línea si no caben */
+  gap: 1.5rem;
+  justify-content: center; /* centrados en la fila */
+  margin-top: 2rem;
+}
+
+.productos-relacionados .producto {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.productos-relacionados .producto:hover {
+  transform: scale(1.05);
+}
+
+.productos-relacionados img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+/* CARRITO */
+.carrito-contenedor {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.carrito-items {
+  flex: 3; /* ocupa más espacio */
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.carrito-item img {
+  width: 80px;
+  border-radius: 8px;
+}
+
+.carrito-info {
+  flex: 1;
+}
+
+.carrito-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carrito-cantidad button {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.carrito-resumen {
+  flex: 1; /* ocupa menos espacio */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #fafafa;
+  font-weight: bold;
+}
+
+.carrito-resumen h2 {
+  margin-top: 0;
+}
+
+#pagar {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: #b23a48;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.carrito-vacio p {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.btn-seguir {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  background: #b23a48;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-seguir:hover {
+  background: #922b38;
 }
