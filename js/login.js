@@ -1,4 +1,4 @@
-document.getElementById("login-form").addEventListener("submit", function(e) {
+document.getElementById("login-form").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const correo = document.getElementById("correo").value.trim().toLowerCase();
@@ -7,19 +7,22 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
 
   error.textContent = ""; // limpiar antes de validar
 
-  if (!correo.endsWith("@duoc.cl") &&
-      !correo.endsWith("@profesor.duoc.cl") &&
-      !correo.endsWith("@gmail.com")) {
-    error.textContent = "Correo no válido (usa @duoc.cl, @profesor.duoc.cl o @gmail.com)";
+  // Obtener usuarios registrados desde localStorage
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  // Buscar coincidencia de correo y contraseña
+  const user = usuarios.find(
+    u => u.correo === correo && u.password === password
+  );
+
+  if (!user) {
+    error.textContent = "Correo o contraseña incorrectos";
     return;
   }
 
-  if (password.length < 4 || password.length > 10) {
-    error.textContent = "La contraseña debe tener entre 4 y 10 caracteres";
-    return;
-  }
+  // Guardar usuario en sesión (localStorage)
+  localStorage.setItem("usuarioLogueado", JSON.stringify(user));
 
   alert("Inicio de sesión exitoso");
-  // Aquí puedes redirigir si quieres:
-  // window.location.href = "index.html";
+  window.location.href = "index.html"; // redirige al inicio
 });
