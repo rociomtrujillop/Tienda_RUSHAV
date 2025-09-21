@@ -45,6 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+function correoValido(correo) {
+  const regex = /^[\w.-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
+  return regex.test(correo);
+}
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     error.textContent = "";
@@ -70,6 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
     if (usuarios.some(u => u.correo === correo)) {
       error.textContent = "Correo ya registrado";
+      return;
+    }
+    if (!correoValido(correo)) {
+      error.textContent = "Correo no válido (solo duoc.cl, profesor.duoc.cl o gmail.com)";
       return;
     }
     usuarios.push(nuevoUsuario);

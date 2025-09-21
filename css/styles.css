@@ -1,26 +1,123 @@
 /* GENERAL */
 body {
-  background-color: #f5f5f5;  
+  background-color: #f5f5f5;
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  color: #333;                 
+  color: #333;
 }
 
 header {
-  background: #2c2c2c;         
+  background: #2c2c2c;
   color: white;
   padding: 1rem;
-  border-bottom: 0.125rem solid #b23a48; 
+  border-bottom: 0.125rem solid #b23a48;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+/* HEADER */
 .header-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* HERO */
+.hero {
+  background: url("img/hero.jpg") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-hero {
+  background: #b23a48;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.btn-hero:hover {
+  background: #8e2d39;
+}
+
+/* CATEGORÍAS */
+.categorias {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.categoria {
+  background: #b23a48;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.categoria:hover {
+  background: #8e2d39;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: white;
 }
 
 .logo {
@@ -30,6 +127,8 @@ header {
 nav {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
@@ -39,7 +138,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #b23a48;        
+  color: #b23a48;
 }
 
 .carrito {
@@ -47,34 +146,24 @@ nav a:hover {
 }
 
 main {
-  padding: 2rem;
-}
-
-footer {
-  background: #2c2c2c;
-  text-align: center;
   padding: 1rem;
-  color: white;
 }
-
 
 /* PRODUCTOS */
 .productos {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
-  justify-content: center;
-  flex-wrap: wrap;
   margin-top: 2rem;
 }
 
 .producto {
   background: white;
-  border: 0.0625rem solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
-  width: 200px;
-  box-shadow: 0.125rem 0.125rem 0.375rem rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s;
 }
 
@@ -84,81 +173,82 @@ footer {
 
 .producto img {
   max-width: 100%;
+  height: auto;
   border-radius: 6px;
 }
 
 .producto h4 {
   margin: 0.5rem 0;
-  color: #2c2c2c;              
+  color: #2c2c2c;
 }
 
 .precio {
   font-weight: bold;
-  color: #b23a48;             
+  color: #b23a48;
   margin: 0.5rem 0;
 }
 
 .producto button {
-  background: #b23a48;        
+  background: #b23a48;
   color: white;
   border: none;
-  padding: 0.4rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  width: 100%;
 }
 
 .producto button:hover {
-  background: #8e2d39;         
+  background: #8e2d39;
 }
 
 /* BLOG */
 .blog-card {
   display: flex;
-  flex-direction: row;           /* fila: texto izq, imagen der */
-  align-items: stretch;          /* misma altura */
-  border: 0.0625rem solid #ddd;
+  flex-direction: column;
+  border: 1px solid #ddd;
   border-radius: 0.5rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
   background: #fff;
   box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1);
-  max-width: 56.25rem;
+  max-width: 100%;
   overflow: hidden;
 }
 
 .blog-card img {
-  width: 50%;                    /* ocupa la mitad */
-  object-fit: cover;             /* recorta sin deformar */
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .contenido-blog {
-  width: 50%;                    /* la otra mitad */
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* botón al fondo */
+  gap: 1rem;
 }
 
 .contenido-blog h2 {
-  margin: 0 0 1rem;
+  margin: 0;
   font-size: 1.4rem;
   color: #2c2c2c;
 }
 
 .contenido-blog p {
-  margin: 0 0 1rem;
+  margin: 0;
   line-height: 1.5;
 }
 
 .contenido-blog a {
-  align-self: flex-start;        
   padding: 0.6rem 1.2rem;
-  background: #b23a48;         
+  background: #b23a48;
   color: white;
   border-radius: 0.375rem;
   text-decoration: none;
   transition: background 0.3s;
+  text-align: center;
 }
 
 .contenido-blog a:hover {
@@ -167,24 +257,24 @@ footer {
 
 /* FORMULARIOS */
 .form-container {
-  max-width: 24.5rem;           
-  margin: 3rem auto;           
-  background: white;           
-  padding: 2rem;               
-  box-shadow: 0 0.35rem 0.635rem rgba(0,0,0,0.1); 
-  text-align: left;          
+  max-width: 100%;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 0 0.35rem 0.635rem rgba(0,0,0,0.1);
+  text-align: left;
 }
 
 .form-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #2c2c2c;             
+  color: #2c2c2c;
 }
 
 form {
   display: flex;
-  flex-direction: column;      /* inputs uno debajo del otro */
-  gap: 1rem;                   /* espacio entre ellos */
+  flex-direction: column;
+  gap: 1rem;
 }
 
 form label {
@@ -193,18 +283,23 @@ form label {
 }
 
 form input, form select, form textarea {
-  padding: 0.2rem;
+  padding: 0.8rem;
   font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 form button {
-  background: #b23a48;      
+  background: #b23a48;
   color: white;
-  padding: 0.9rem;
+  padding: 1rem;
   border: none;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  border-radius: 4px;
 }
 
 form button:hover {
@@ -214,26 +309,24 @@ form button:hover {
 /* DETALLE PRODUCTO */
 .detalle-container {
   display: flex;
-  align-items: flex-start;   /* alinea arriba */
+  flex-direction: column;
   gap: 2rem;
-  margin: 2rem auto;
-  max-width: 56.25rem;
+  margin: 1rem auto;
   background: white;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 0.35rem 0.635rem rgba(0,0,0,0.1);
 }
 
-/* imagen principal con miniaturas debajo */
 .detalle-imagen {
-  flex: 1; /* ocupa mitad izquierda */
   display: flex;
-  flex-direction: column; /* principal arriba, miniaturas abajo */
+  flex-direction: column;
   align-items: center;
 }
 
 .detalle-imagen img {
   max-width: 100%;
+  height: auto;
   border-radius: 0.5rem;
 }
 
@@ -242,11 +335,12 @@ form button:hover {
   gap: 0.5rem;
   margin-top: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .miniaturas img {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
@@ -259,7 +353,6 @@ form button:hover {
 }
 
 .detalle-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -268,6 +361,7 @@ form button:hover {
 .detalle-info h1 {
   margin: 0;
   color: #2c2c2c;
+  font-size: 1.5rem;
 }
 
 .detalle-info .precio {
@@ -278,18 +372,19 @@ form button:hover {
 
 .detalle-info input[type="number"] {
   width: 70px;
-  padding: 0.3rem;
+  padding: 0.5rem;
 }
 
 .detalle-info button {
   background: #b23a48;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 0.375rem;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  width: 100%;
 }
 
 .detalle-info button:hover {
@@ -298,10 +393,9 @@ form button:hover {
 
 /* PRODUCTOS RELACIONADOS */
 .productos-relacionados {
-  display: flex;
-  flex-wrap: wrap;      /* que salten de línea si no caben */
-  gap: 1.5rem;
-  justify-content: center; /* centrados en la fila */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
   margin-top: 2rem;
 }
 
@@ -311,7 +405,6 @@ form button:hover {
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
-  width: 200px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: transform 0.2s;
 }
@@ -322,52 +415,60 @@ form button:hover {
 
 .productos-relacionados img {
   max-width: 100%;
+  height: auto;
   border-radius: 0.5rem;
 }
 
 /* CARRITO */
 .carrito-contenedor {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
 }
 
 .carrito-items {
-  flex: 3; /* ocupa más espacio */
+  width: 100%;
 }
 
 .carrito-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #ddd;
   padding: 1rem 0;
   gap: 1rem;
+  text-align: center;
 }
 
 .carrito-item img {
-  width: 80px;
+  width: 100px;
   border-radius: 8px;
 }
 
 .carrito-info {
   flex: 1;
+  text-align: center;
 }
 
 .carrito-cantidad {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .carrito-cantidad button {
   background: #eee;
   border: 1px solid #ccc;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.7rem;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .carrito-resumen {
-  flex: 1; /* ocupa menos espacio */
+  width: 100%;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1.5rem;
@@ -377,19 +478,25 @@ form button:hover {
 
 .carrito-resumen h2 {
   margin-top: 0;
+  text-align: center;
 }
 
 #pagar {
   display: block;
   margin-top: 1rem;
   width: 100%;
-  padding: 0.8rem;
+  padding: 1rem;
   background: #b23a48;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.carrito-vacio {
+  text-align: center;
+  padding: 2rem;
 }
 
 .carrito-vacio p {
@@ -399,7 +506,7 @@ form button:hover {
 
 .btn-seguir {
   display: inline-block;
-  padding: 0.7rem 1.2rem;
+  padding: 0.8rem 1.5rem;
   background: #b23a48;
   color: white;
   border-radius: 6px;
@@ -411,32 +518,36 @@ form button:hover {
 .btn-seguir:hover {
   background: #922b38;
 }
+
 /* ADMIN */
 .sidebar {
-  width: 220px;
+  width: 100%;
   background: #2c2c2c;
   color: white;
-  min-height: 100vh;
   padding: 1rem;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: static;
 }
 
 .sidebar h2 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   color: #b23a48;
+  text-align: center;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .sidebar a {
-  display: block;
   color: white;
   text-decoration: none;
-  padding: 0.5rem 0;
-  margin: 0.3rem 0;
+  padding: 0.5rem;
   border-radius: 4px;
   transition: background 0.2s;
+  text-align: center;
 }
 
 .sidebar a:hover {
@@ -445,9 +556,17 @@ form button:hover {
 
 /* Contenido principal */
 .main-content {
-  margin-left: 240px; /* deja espacio al sidebar */
-  padding: 2rem;
-  flex: 1;
+  margin-left: 0;
+  padding: 1rem;
+  width: 100%;
+}
+
+.main-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+  display: block;
 }
 
 .main-content th,
@@ -455,6 +574,7 @@ form button:hover {
   border: 1px solid #ddd;
   padding: 0.8rem;
   text-align: left;
+  white-space: nowrap;
 }
 
 .main-content th {
@@ -465,7 +585,6 @@ form button:hover {
 .main-content tr:nth-child(even) {
   background: #f9f9f9;
 }
-
 
 .hidden {
   display: none;
@@ -478,7 +597,8 @@ form button:hover {
   padding: 0.6rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  margin-right: 0.5rem;
+  margin: 0.25rem;
+  font-size: 0.9rem;
 }
 
 .btn:hover {
@@ -486,9 +606,151 @@ form button:hover {
 }
 
 .btn-danger {
-  background: #b23a48;
+  background: #dc3545;
 }
 
 .btn-danger:hover {
-  background: #922b38;
+  background: #c82333;
+}
+
+/* MEDIA QUERIES (para otros dispositivos) */
+@media (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .hero {
+    padding: 6rem 2rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 2.5rem;
+  }
+  
+  .main-content {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+  }
+  
+  .sidebar {
+    width: 220px;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  
+  .sidebar nav {
+    flex-direction: column;
+  }
+  
+  .blog-card {
+    flex-direction: row;
+  }
+  
+  .blog-card img {
+    width: 40%;
+    height: auto;
+  }
+  
+  .contenido-blog {
+    width: 60%;
+    padding: 2rem;
+  }
+  
+  .detalle-container {
+    flex-direction: row;
+    max-width: 1200px;
+  }
+  
+  .carrito-contenedor {
+    flex-direction: row;
+  }
+  
+  .carrito-items {
+    flex: 3;
+  }
+  
+  .carrito-resumen {
+    flex: 1;
+  }
+  
+  .carrito-item {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .carrito-info {
+    text-align: left;
+  }
+  
+  .carrito-cantidad {
+    justify-content: flex-start;
+  }
+  
+  .productos {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .form-container {
+    max-width: 500px;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .productos {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .productos-relacionados {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .detalle-container {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .btn-hero {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .categorias-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  
+  .main-content table {
+    font-size: 0.8rem;
+  }
+  
+  .main-content th,
+  .main-content td {
+    padding: 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
 }

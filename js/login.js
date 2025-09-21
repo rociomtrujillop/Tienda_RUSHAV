@@ -7,16 +7,21 @@ document.getElementById("login-form").addEventListener("submit", (e) => {
 
   error.textContent = ""; // limpiar antes de validar
 
-  // Obtener usuarios registrados desde localStorage
+  // obtener usuarios registrados desde localStorage
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  // Buscar coincidencia de correo y contraseña
+  // buscar coincidencia de correo y contraseña
   const user = usuarios.find(
     u => u.correo === correo && u.password === password
   );
 
   if (!user) {
     error.textContent = "Correo o contraseña incorrectos";
+    return;
+  }
+
+  if (!correoValido(correo)) {
+    error.textContent = "El correo debe ser @duoc.cl, @profesor.duoc.cl o @gmail.com";
     return;
   }
 

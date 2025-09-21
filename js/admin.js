@@ -2,7 +2,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // referencias a secciones
   const sections = document.querySelectorAll("section");
 
-  // función mostrar secciones
+  // funciones
+
+  function correoValido(correo) {
+  const regex = /^[\w.-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
+  return regex.test(correo);
+  }
+
+  function validarRUN(run) {
+  run = run.toUpperCase().trim();
+  if (!/^[0-9]{7,8}[0-9K]$/.test(run)) return false;
+
+  let cuerpo = run.slice(0, -1);
+  let dv = run.slice(-1);
+
+  let suma = 0, multiplo = 2;
+  for (let i = cuerpo.length - 1; i >= 0; i--) {
+    suma += multiplo * parseInt(cuerpo.charAt(i));
+    multiplo = multiplo === 7 ? 2 : multiplo + 1;
+  }
+  let dvEsperado = 11 - (suma % 11);
+  let dvCalc = dvEsperado === 11 ? "0" : dvEsperado === 10 ? "K" : dvEsperado.toString();
+
+  return dv === dvCalc;
+  }
+
   window.mostrarSeccion = (id) => {
     sections.forEach(s => s.classList.add("hidden"));
     document.getElementById(id).classList.remove("hidden");
@@ -121,6 +145,16 @@ document.addEventListener("DOMContentLoaded", () => {
       password: document.getElementById("u-password").value
     };
 
+    if (!validarRUN(user.run)) {
+      errorUsuario.textContent = "RUN inválido";
+      return;
+    }
+
+    if (!correoValido(user.correo)) {
+      errorUsuario.textContent = "Correo inválido (solo duoc.cl, profesor.duoc.cl o gmail.com)";
+      return;
+    }
+
     const idx = document.getElementById("u-edit-index").value;
     if (idx) {
       usuarios[idx] = user;
@@ -192,7 +226,20 @@ document.addEventListener("DOMContentLoaded", () => {
       nombre: document.getElementById("p-nombre").value,
       precio: parseFloat(document.getElementById("p-precio").value),
       stock: parseInt(document.getElementById("p-stock").value),
+      descripcion: document.getElementById("p-descripcion").value.trim()  
     };
+
+    const descripcion = document.getElementById("p-descripcion").value.trim();
+    if (descripcion.length > 500) {
+      errorProducto.textContent = "La descripción no puede superar 500 caracteres";
+      return;
+    }
+
+    const stockCritico = parseInt(document.getElementById("p-stock-critico").value || "0");
+    if (stockCritico < 0) {
+      errorProducto.textContent = "El stock crítico no puede ser negativo";
+      return;
+    }
 
     const idx = document.getElementById("p-edit-index").value;
     if (idx) {
