@@ -1,4 +1,17 @@
-if (!localStorage.getItem("productos")) {
+const urlParams = new URLSearchParams(window.location.search);
+const categoriaSeleccionada = urlParams.get('categoria');
+
+// Función para filtrar por categoría
+function filtrarProductos(productos) {
+    if (!categoriaSeleccionada) return productos;
+    
+    return productos.filter(p => 
+        p.categoria.some(cat => 
+            cat.toLowerCase() === categoriaSeleccionada.toLowerCase()
+        )
+    );
+}
+
 const productos = [
   {
     id: 1,
@@ -14,7 +27,7 @@ const productos = [
     nombre: "Jeans flare negro",
     precio: 29990,
     imagen: "img/producto2.png",
-    imagenes: ["img/producto2.png", "img/producto2.2.png"],
+    imagenes: ["img/producto2.png", "img/producto2.2.jpg"],
     categoria: ["Jeans", "Hombre"],
     descripcion: "Jeans con estilo flare."
   },
@@ -92,14 +105,15 @@ const productos = [
   }
 ];
 
-localStorage.setItem("productos", JSON.stringify(productos));
+if (!localStorage.getItem("productos")) {
+  localStorage.setItem("productos", JSON.stringify(productos));
 }
 
-// Mostrar productos en productos.html
 const contenedor = document.getElementById("productos-container");
 if (contenedor) {
   const listaProductos = JSON.parse(localStorage.getItem("productos")) || [];
-  listaProductos.forEach(p => {
+  const productosFiltrados = filtrarProductos(listaProductos);
+  productosFiltrados.forEach(p => {
     const div = document.createElement("article");
     div.classList.add("producto");
     div.innerHTML = `
@@ -112,7 +126,6 @@ if (contenedor) {
   });
 }
 
-// Añadir al carrito
 function agregarAlCarrito(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const listaProductos = JSON.parse(localStorage.getItem("productos")) || [];

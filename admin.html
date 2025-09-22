@@ -11,14 +11,15 @@
   <div class="sidebar">
     <h2>Admin Panel</h2>
     <a href="#" onclick="mostrarSeccion('inicio')">Inicio</a>
+
     <h3>Usuarios</h3>
     <a href="#" onclick="mostrarSeccion('usuarios-listar')">Ver Usuarios</a>
     <a href="#" onclick="mostrarSeccion('usuarios-crear')">Crear Usuario</a>
+
     <h3>Productos</h3>
     <a href="#" onclick="mostrarSeccion('productos-listar')">Ver Productos</a>
     <a href="#" onclick="mostrarSeccion('productos-crear')">Crear Producto</a>
   </div>
-
   <!-- Zona principal -->
   <div class="main-content">
     <!-- Inicio -->
@@ -26,13 +27,11 @@
       <h1>Hola, Admin!</h1>
       <p>Bienvenido al panel de administración de <strong>RUSHAV</strong></p>
     </section>
-
     <!-- USUARIOS - LISTAR -->
     <section id="usuarios-listar" class="hidden">
       <h2>Usuarios registrados</h2>
       <div id="tabla-usuarios"></div>
     </section>
-
     <!-- USUARIOS - CREAR / EDITAR -->
     <section id="usuarios-crear" class="hidden">
       <h2 id="usuarios-crear-titulo">Crear Usuario</h2>
@@ -41,10 +40,13 @@
           <div>
             <label for="u-run">RUN (sin puntos ni guion)</label>
             <input id="u-run" type="text" maxlength="9" placeholder="Ej: 19011022K" required>
+
             <label for="u-nombres">Nombres</label>
             <input id="u-nombres" type="text" maxlength="50" required>
+
             <label for="u-apellidos">Apellidos</label>
             <input id="u-apellidos" type="text" maxlength="100" required>
+
             <label for="u-correo">Correo</label>
             <input id="u-correo" type="email" maxlength="100" required>
           </div>
@@ -63,41 +65,32 @@
             <select id="u-comuna"></select>
           </div>
         </div>
-
         <label for="u-direccion">Dirección</label>
         <input id="u-direccion" type="text" maxlength="300" required>
-
         <label for="u-password">Contraseña</label>
         <input id="u-password" type="password" required>
-
         <!-- hidden field to store edit index -->
         <input type="hidden" id="u-edit-index" value="">
-
-        <div style="display:flex; gap:0.5rem;">
+        <div class="form-buttons">
           <button class="btn" type="submit" id="u-submit">Guardar</button>
           <button class="btn secondary" type="button" id="u-cancel">Cancelar</button>
         </div>
-
-        <p id="u-error" class="small" style="color:crimson"></p>
+        <p id="u-error" class="small error"></p>
       </form>
     </section>
-
     <!-- PRODUCTOS - LISTAR -->
     <section id="productos-listar" class="hidden">
       <h2>Productos registrados</h2>
       <div id="tabla-productos"></div>
     </section>
-
     <!-- PRODUCTOS - CREAR / EDITAR -->
     <section id="productos-crear" class="hidden">
       <h2 id="productos-crear-titulo">Crear Producto</h2>
       <form id="form-producto" class="form-container">
         <label for="p-codigo">Código (texto, min 3)</label>
         <input id="p-codigo" type="text" minlength="3" required>
-
         <label for="p-nombre">Nombre</label>
         <input id="p-nombre" type="text" maxlength="100" required>
-
         <div class="two-columns">
           <div>
             <label for="p-precio">Precio (≥0, permite decimales)</label>
@@ -108,27 +101,20 @@
             <input id="p-stock" type="number" step="1" min="0" required>
           </div>
         </div>
-
         <label for="p-stock-critico">Stock crítico (opcional)</label>
         <input id="p-stock-critico" type="number" step="1" min="0">
-
         <label for="p-categorias">Categorías (separadas por coma)</label>
         <input id="p-categorias" type="text" placeholder="Jeans, Hombre" required>
-
         <label for="p-descripcion">Descripción (opcional, max 500)</label>
         <textarea id="p-descripcion" maxlength="500"></textarea>
-
         <label for="p-imagen">Imagen (URL, opcional)</label>
         <input id="p-imagen" type="text" placeholder="img/producto10.jpg">
-
         <input type="hidden" id="p-edit-index" value="">
-
-        <div style="display:flex; gap:0.5rem;">
+        <div class="form-buttons">
           <button class="btn" type="submit" id="p-submit">Guardar</button>
           <button class="btn secondary" type="button" id="p-cancel">Cancelar</button>
         </div>
-
-        <p id="p-error" class="small" style="color:crimson"></p>
+        <p id="p-error" class="small error"></p>
       </form>
     </section>
   </div>
