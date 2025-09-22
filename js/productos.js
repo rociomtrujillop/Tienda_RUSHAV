@@ -1,3 +1,4 @@
+if (!localStorage.getItem("productos")) {
 const productos = [
   {
     id: 1,
@@ -92,4 +93,41 @@ const productos = [
 ];
 
 localStorage.setItem("productos", JSON.stringify(productos));
+}
 
+// Mostrar productos en productos.html
+const contenedor = document.getElementById("productos-container");
+if (contenedor) {
+  const listaProductos = JSON.parse(localStorage.getItem("productos")) || [];
+  listaProductos.forEach(p => {
+    const div = document.createElement("article");
+    div.classList.add("producto");
+    div.innerHTML = `
+      <img src="${p.imagen}" alt="${p.nombre}">
+      <h4><a href="detalle.html?id=${p.id}">${p.nombre}</a></h4>
+      <p class="precio">$${p.precio.toLocaleString("es-CL")}</p>
+      <button onclick="agregarAlCarrito(${p.id})">Añadir al carrito</button>
+    `;
+    contenedor.appendChild(div);
+  });
+}
+
+// Añadir al carrito
+function agregarAlCarrito(id) {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const listaProductos = JSON.parse(localStorage.getItem("productos")) || [];
+  const producto = listaProductos.find(p => p.id === id);
+
+  if (!producto) return;
+
+  // Verificar si ya existe
+  const existente = carrito.find(p => p.id === id);
+  if (existente) {
+    existente.cantidad = (existente.cantidad || 1) + 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert("Producto añadido al carrito");
+}

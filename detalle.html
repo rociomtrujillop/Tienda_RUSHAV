@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="header-container"> 
-      <h1 class="logo">RUSHAV</h1>
+      <h1 class="logo"><a href="index.html">RUSHAV</a></h1>
       <nav>
         <a href="index.html">Inicio</a>
         <a href="productos.html">Productos</a>
@@ -24,78 +24,8 @@
   </header>
 
   <main id="detalle"></main>
-
-  <!-- Importa los productos -->
-  <script src="js/productos.js"></script>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get("id"));
-    const listaProductos = JSON.parse(localStorage.getItem("productos"));
-    const producto = listaProductos.find(p => p.id === id);
-    const detalle = document.getElementById("detalle");
-
-    if (producto) {
-      // Construcción de detalle
-      detalle.innerHTML = `
-        <div class="detalle-container">
-          <div class="detalle-imagen">
-            <img id="imagen-principal" src="${producto.imagen}" alt="${producto.nombre}">
-            <div class="miniaturas">
-              ${(producto.imagenes || [producto.imagen])
-                .map(img => `<img src="${img}" onclick="cambiarImagen('${img}')">`)
-                .join("")}
-            </div>
-          </div>
-          <div class="detalle-info">
-            <h1>${producto.nombre}</h1>
-            <p class="precio">$${producto.precio}</p>
-            <p>${producto.descripcion}</p>
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" value="1" min="1">
-            <button onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
-          </div>
-        </div>
-      `;
-
-      // Productos relacionados por categoría
-      const relacionados = listaProductos.filter(p => 
-        p.id !== producto.id &&
-        p.categoria.some(cat => producto.categoria.includes(cat))
-      ).slice(0, 4);
-
-      detalle.innerHTML += `
-        <h2>Productos relacionados</h2>
-        <div class="productos-relacionados">
-          ${relacionados.length > 0 
-            ? relacionados.map(p => `
-              <article class="producto">
-                <img src="${p.imagen}" alt="${p.nombre}">
-                <h4><a href="detalle.html?id=${p.id}">${p.nombre}</a></h4>
-                <p class="precio">$${p.precio}</p>
-              </article>
-            `).join("") 
-            : "<p>No hay productos relacionados.</p>"}
-        </div>
-      `;
-    } else {
-      detalle.innerHTML = "<p>Producto no encontrado.</p>";
-    }
-
-    function cambiarImagen(src) {
-      document.getElementById("imagen-principal").src = src;
-    }
-
-    function agregarAlCarrito(id) {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      const producto = listaProductos.find(p => p.id === id);
-      const cantidad = parseInt(document.getElementById("cantidad").value);
-      carrito.push({ ...producto, cantidad });
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      alert("Producto añadido al carrito");
-    }
-  </script>
-
+  <script src="js/productos.js"></script> <!-- para acceder a la lista de productos -->
+  <script src="js/detalle.js"></script>   <!-- para el detalle -->  
   <footer>
     <p>© 2025 io rocio jeje</p>
   </footer>

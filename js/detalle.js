@@ -1,25 +1,28 @@
+// Obtener el ID desde la URL (?id=1)
 const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get("id"));
-const productos = JSON.parse(localStorage.getItem("productos")) || [];
 
-const producto = productos.find(p => p.id === id);
+// Recuperar productos desde localStorage
+const listaProductos = JSON.parse(localStorage.getItem("productos")) || [];
+const producto = listaProductos.find(p => p.id === id);
 
-const detalleDiv = document.getElementById("detalle-producto");
+const detalle = document.getElementById("detalle");
 
 if (producto) {
-  detalleDiv.innerHTML = `
-    <div class="detalle-producto">
+  // Construcción de detalle principal
+  detalle.innerHTML = `
+    <div class="detalle-container">
       <div class="detalle-imagen">
         <img id="imagen-principal" src="${producto.imagen}" alt="${producto.nombre}">
         <div class="miniaturas">
-          <img src="${producto.imagen}" alt="Miniatura 1" onclick="cambiarImagen(this)">
-          <img src="img/producto1.jpg" alt="Miniatura 2" onclick="cambiarImagen(this)">
-          <img src="img/producto2.png" alt="Miniatura 3" onclick="cambiarImagen(this)">
+          ${(producto.imagenes || [producto.imagen])
+            .map(img => `<img src="${img}" onclick="cambiarImagen('${img}')">`)
+            .join("")}
         </div>
       </div>
       <div class="detalle-info">
         <h1>${producto.nombre}</h1>
-        <p class="precio">$${producto.precio}</p>
+        <p class="precio">$${producto.precio.toLocaleString("es-CL")}</p>
         <p>${producto.descripcion}</p>
         <label for="cantidad">Cantidad:</label>
         <input type="number" id="cantidad" value="1" min="1">
@@ -27,21 +30,50 @@ if (producto) {
       </div>
     </div>
   `;
+
+  // Mostrar productos relacionados
+  const relacionados = listaProductos.filter(p => 
+    p.id !== producto.id &&
+    p.categoria.some(cat => producto.categoria.includes(cat))
+  ).slice(0, 4);
+
+  detalle.innerHTML += `
+    <h2>Productos relacionados</h2>
+    <div class="productos-relacionados">
+      ${relacionados.length > 0 
+        ? relacionados.map(p => `
+          <article class="producto">
+            <img src="${p.imagen}" alt="${p.nombre}">
+            <h4><a href="detalle.html?id=${p.id}">${p.nombre}</a></h4>
+            <p class="precio">$${p.precio.toLocaleString("es-CL")}</p>
+          </article>
+        `).join("") 
+        : "<p>No hay productos relacionados.</p>"}
+    </div>
+  `;
+} else {
+  detalle.innerHTML = "<p>Producto no encontrado.</p>";
 }
 
-// función para cambiar la imagen principal al hacer clic en miniaturas
-function cambiarImagen(img) {
-  document.getElementById("imagen-principal").src = img.src;
+// Función para cambiar imagen principal
+function cambiarImagen(src) {
+  document.getElementById("imagen-principal").src = src;
 }
 
-// añadir al carrito con cantidad
+// Función para agregar al carrito
 function agregarAlCarrito(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const producto = productos.find(p => p.id === id);
+  const producto = listaProductos.find(p => p.id === id);
   const cantidad = parseInt(document.getElementById("cantidad").value);
 
-  for (let i = 0; i < cantidad; i++) {
-    carrito.push(producto);
+  if (!producto) return;
+
+  // Si ya está en el carrito, sumar cantidad
+  const existente = carrito.find(p => p.id === id);
+  if (existente) {
+    existente.cantidad += cantidad;
+  } else {
+    carrito.push({ ...producto, cantidad });
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
