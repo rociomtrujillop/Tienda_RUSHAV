@@ -2,8 +2,8 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const carritoItems = document.getElementById("carrito-items");
 const totalElement = document.getElementById("total");
+const pagarBtn = document.getElementById("pagar"); // ← Añade esta línea
 
-// Renderizar el carrito
 function renderCarrito() {
   carritoItems.innerHTML = "";
   let total = 0;
@@ -16,6 +16,11 @@ function renderCarrito() {
       </div>
     `;
     totalElement.textContent = "TOTAL: $0";
+    
+    if (pagarBtn) {
+      pagarBtn.style.display = "none";
+    }
+    
     return;
   }
 
@@ -41,6 +46,11 @@ function renderCarrito() {
   });
 
   totalElement.textContent = `TOTAL: $${formatearPrecio(total)}`;
+  
+  if (pagarBtn) {
+    pagarBtn.style.display = "block";
+  }
+  
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
@@ -58,18 +68,25 @@ function eliminarDelCarrito(index) {
   renderCarrito();
 }
 
-// Botón pagar
 document.getElementById("pagar").addEventListener("click", () => {
-  alert("Gracias por tu compra");
+  if (carrito.length === 0) {
+    alert("El carrito está vacío. Agrega productos antes de pagar.");
+    return;
+  }
+  
+  alert("¡Gracias por tu compra! Total: $" + formatearPrecio(calcularTotal()));
   localStorage.removeItem("carrito");
   carrito = [];
   renderCarrito();
 });
+
+function calcularTotal() {
+  return carrito.reduce((total, p) => total + (p.precio * (p.cantidad || 1)), 0);
+}
 
 // Formatear precios chilenos
 function formatearPrecio(valor) {
   return valor.toLocaleString("es-CL");
 }
 
-// Render inicial
 renderCarrito();
