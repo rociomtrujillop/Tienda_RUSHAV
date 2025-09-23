@@ -340,6 +340,9 @@ form button:hover {
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 0.35rem 0.635rem rgba(0,0,0,0.1);
+
+  max-width: 56.25rem; /* ≈ 900px si 1rem = 16px */
+  width: 100%;
 }
 
 .detalle-imagen {
@@ -688,7 +691,15 @@ form button:hover {
   
   .detalle-container {
     flex-direction: row;
-    max-width: 1200px;
+    align-items: flex-start;
+  }
+
+  .detalle-imagen {
+    flex: 1;
+  }
+
+  .detalle-info {
+    flex: 1;
   }
   
   .carrito-contenedor {
